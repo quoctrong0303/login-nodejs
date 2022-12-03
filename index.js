@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const port = process.env.PORT || 3002;
+const api = require("./helper/index");
 const app = express();
 
 app.use(bodyParser.json());
@@ -10,7 +11,7 @@ app.use(
     })
 );
 
-app.use("/", (request, response) => {
+app.get("/", (request, response) => {
     const key = request.header("key");
     //kiem tra key, neu hop le
     if (key === "quoctrong0303") {
@@ -25,7 +26,7 @@ app.use("/", (request, response) => {
     }
 });
 
-app.use("/login", async (request, response) => {
+app.post("/login", async (request, response) => {
     let accounts = request.body;
     for (account of accounts) {
         //khong nen xai forEach voi await async vi no se khong doi, nen xai nhu the nay
