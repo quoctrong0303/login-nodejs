@@ -2,7 +2,7 @@
     "name": "api-test",
     "version": "1.0.0",
     "description": "wolvesville-api-test",
-    "main": "index.js.js",
+    "main": "index.js",
     "engines": {
         "node": "16.x"
     },
