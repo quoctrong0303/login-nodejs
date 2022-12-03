@@ -2,12 +2,12 @@
     "name": "api-test",
     "version": "1.0.0",
     "description": "wolvesville-api-test",
-    "main": "index.js",
+    "main": "index.js.js",
     "engines": {
         "node": "16.x"
     },
     "scripts": {
-        "start": "node app.js",
+        "start": "node index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
