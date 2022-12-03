@@ -1,9 +1,11 @@
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const port = process.env.PORT || 3002;
 const api = require("./helper/index");
 const app = express();
-
+app.use(cors());
+app.options("*", cors());
 app.use(bodyParser.json());
 app.use(
     bodyParser.urlencoded({
