@@ -51,14 +51,28 @@ module.exports = api = {
         );
         return res;
     },
-    claim: async (token, clanId, questId) => {
+    claim: async (token, questId) => {
         config.headers.Authorization = "Bearer " + token;
-        let res = await axios.post("", config);
+        let res = await axios.post(
+            `https://api-core.wolvesville.com/clanQuests/clanQuests/claim?questId=${questId}`,
+            {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            }
+        );
         return res;
     },
-    skipWaiting: async (token, clanId) => {
+    skipWaiting: async (token) => {
         config.headers.Authorization = "Bearer " + token;
-        let res = await axios.post("", config);
+        let res = await axios.post(
+            "https://api-core.wolvesville.com/clanQuests/skipWaitingTime",
+            {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            }
+        );
         return res;
     },
 };
