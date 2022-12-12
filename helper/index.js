@@ -44,7 +44,7 @@ module.exports = api = {
     },
     available: async (payload) => {
         console.log(payload);
-        let result = await api.signInWithEmailAndPassword(payload);
+        let result = await api.firebaseAuth(payload);
         let token = result.data.idToken;
         config.headers.Authorization = "Bearer " + token;
         let res = await axios.get(
