@@ -28,6 +28,26 @@ app.get("/", (request, response) => {
     }
 });
 
+
+app.post("/login", async (request, response) => {
+    let accounts = request.body;
+    for (account of accounts) {
+        //Xai dong` bo. login tung account la hop ly, vi api wolvesville se bi loi "too-many-request" neu nhu gui yeu cau cung luc cac request giong nhau
+        //khong nen xai forEach voi await async vi no se khong doi. return, nen xai nhu the nay
+        if (account.isFirebaseAuth) {
+            let res = await api.firebaseAuth(account);
+            account.idToken = res.data.idToken;
+            res = await api.me(account.idToken);
+            account.id = res.data.id;
+        } else {
+            let res = await api.signInWithEmailAndPassword(account);
+            account.idToken = res.data.idToken;
+            res = await api.me(account.idToken);
+            account.id = res.data.id;
+        }
+    }
+});
+
 app.post("/quest-status", async (request, response) => {
     let res = await api.available(request.body);
 
