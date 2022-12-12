@@ -1,8 +1,13 @@
 const { default: axios } = require("axios");
-
 const config = {
-    headers: { Accept: "application/json", "Accept-Encoding": "identity" },
+    headers: {
+        Accept: "application/json",
+        "Accept-Encoding": "identity",
+        "Content-Type": "application/json",
+        Authorization: BOT_KEY,
+    },
 };
+
 module.exports = api = {
     firebaseAuth: async (payload) => {
         let res = await axios.post(
@@ -34,6 +39,17 @@ module.exports = api = {
                     Authorization: "Bearer " + token,
                 },
             }
+        );
+        return res;
+    },
+    available: async (payload) => {
+        console.log(payload);
+        let result = await api.signInWithEmailAndPassword(payload);
+        let token = result.data.idToken;
+        config.headers.Authorization = "Bearer " + token;
+        let res = await axios.get(
+            "https://api-core.wolvesville.com/clanQuests/available",
+            config
         );
         return res;
     },

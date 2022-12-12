@@ -28,24 +28,10 @@ app.get("/", (request, response) => {
     }
 });
 
-app.post("/login", async (request, response) => {
-    let accounts = request.body;
-    for (account of accounts) {
-        //khong nen xai forEach voi await async vi no se khong doi, nen xai nhu the nay
-        if (account.isFirebaseAuth) {
-            let res = await api.firebaseAuth(account);
-            account.idToken = res.data.idToken;
-            res = await api.me(account.idToken);
-            account.id = res.data.id;
-        } else {
-            let res = await api.signInWithEmailAndPassword(account);
-            account.idToken = res.data.idToken;
-            res = await api.me(account.idToken);
-            account.id = res.data.id;
-        }
-    }
+app.post("/quest-status", async (request, response) => {
+    let res = await api.available(request.body);
 
-    response.send(accounts);
+    response.send(res);
 });
 
 // Start the server
