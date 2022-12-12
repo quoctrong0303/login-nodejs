@@ -4,7 +4,7 @@ const config = {
         Accept: "application/json",
         "Accept-Encoding": "identity",
         "Content-Type": "application/json",
-        Authorization: BOT_KEY,
+        Authorization: "",
     },
 };
 
