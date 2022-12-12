@@ -52,7 +52,6 @@ module.exports = api = {
         return res;
     },
     claim: async (token, questId) => {
-        config.headers.Authorization = "Bearer " + token;
         let res = await axios.post(
             `https://api-core.wolvesville.com/clanQuests/clanQuests/claim?questId=${questId}`,
             {
@@ -64,7 +63,6 @@ module.exports = api = {
         return res;
     },
     skipWaiting: async (token) => {
-        config.headers.Authorization = "Bearer " + token;
         let res = await axios.post(
             "https://api-core.wolvesville.com/clanQuests/skipWaitingTime",
             {

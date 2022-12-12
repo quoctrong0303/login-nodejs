@@ -49,9 +49,8 @@ app.post("/login", async (request, response) => {
 });
 
 app.post("/quest-status", async (request, response) => {
-    let result = await api.firebaseAuth(request.body);
-    let token = result.data.idToken;
-    let res = await api.available(token);
+    //Lấy token từ body
+    let res = await api.available(request.body.idToken);
     response.send(res.data);
 });
 
