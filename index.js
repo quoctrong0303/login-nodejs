@@ -52,7 +52,7 @@ app.post("/quest-status", async (request, response) => {
     let result = await api.firebaseAuth(request.body);
     let token = result.data.idToken;
     let res = await api.available(token);
-    response.send(res);
+    response.send(res.data);
 });
 
 // Start the server
