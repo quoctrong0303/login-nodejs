@@ -42,10 +42,7 @@ module.exports = api = {
         );
         return res;
     },
-    available: async (payload) => {
-        console.log(payload);
-        let result = await api.firebaseAuth(payload);
-        let token = result.data.idToken;
+    available: async (token) => {
         config.headers.Authorization = "Bearer " + token;
         let res = await axios.get(
             "https://api-core.wolvesville.com/clanQuests/available",
