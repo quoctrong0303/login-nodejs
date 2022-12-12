@@ -3,8 +3,6 @@ const config = {
     headers: {
         Accept: "application/json",
         "Accept-Encoding": "identity",
-        "Content-Type": "application/json",
-        Authorization: "",
     },
 };
 
@@ -48,6 +46,16 @@ module.exports = api = {
             "https://api-core.wolvesville.com/clanQuests/available",
             config
         );
+        return res;
+    },
+    claim: async (token, clanId, questId) => {
+        config.headers.Authorization = "Bearer " + token;
+        let res = await axios.post("", config);
+        return res;
+    },
+    skipWaiting: async (token, clanId) => {
+        config.headers.Authorization = "Bearer " + token;
+        let res = await axios.post("", config);
         return res;
     },
 };

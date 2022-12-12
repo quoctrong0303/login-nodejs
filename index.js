@@ -45,6 +45,7 @@ app.post("/login", async (request, response) => {
             account.id = res.data.id;
         }
     }
+    response.send(accounts);
 });
 
 app.post("/quest-status", async (request, response) => {
