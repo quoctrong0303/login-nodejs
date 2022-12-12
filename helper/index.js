@@ -41,10 +41,13 @@ module.exports = api = {
         return res;
     },
     available: async (token) => {
-        config.headers.Authorization = "Bearer " + token;
         let res = await axios.get(
             "https://api-core.wolvesville.com/clanQuests/available",
-            config
+            {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            }
         );
         return res;
     },
