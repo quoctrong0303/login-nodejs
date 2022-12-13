@@ -74,7 +74,7 @@ module.exports = api = {
         return res;
     },
     active: async (token) => {
-        let res = await axios.post(
+        let res = await axios.get(
             "https://api-core.wolvesville.com/clanQuests/active",
             {
                 headers: {
