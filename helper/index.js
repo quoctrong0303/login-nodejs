@@ -73,4 +73,15 @@ module.exports = api = {
         );
         return res;
     },
+    active: async (token) => {
+        let res = await axios.post(
+            "https://api-core.wolvesville.com/clanQuests/active",
+            {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            }
+        );
+        return res;
+    },
 };

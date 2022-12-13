@@ -66,6 +66,12 @@ app.post("/quest-skip", async (request, response) => {
     response.send(res.data);
 });
 
+app.post("/quest-active", async (request, response) => {
+    //Lấy token từ body
+    let res = await api.active(request.body.idToken);
+    response.send(res.data);
+});
+
 // Start the server
 const server = app.listen(port, (error) => {
     if (error) return console.log(`Error: ${error}`);
