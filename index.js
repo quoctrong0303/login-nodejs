@@ -55,7 +55,7 @@ app.post("/quest-status", async (request, response) => {
 });
 
 app.post("/quest-claim", async (request, response) => {
-    //Lấy token từ body
+    //Lấy token, questId từ body
     let res = await api.claim(request.body.idToken, request.body.questId);
     response.send(res.data);
 });
