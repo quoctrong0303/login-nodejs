@@ -61,6 +61,7 @@ app.post("/quest-claim", async (request, response) => {
 });
 
 app.post("/quest-skip", async (request, response) => {
+    console.log(request.body.idToken);
     //Lấy token từ body
     let res = await api.skipWaiting(request.body.idToken);
     response.send(res.data);
