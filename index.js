@@ -54,6 +54,18 @@ app.post("/quest-status", async (request, response) => {
     response.send(res.data);
 });
 
+app.post("/quest-claim", async (request, response) => {
+    //Lấy token từ body
+    let res = await api.claim(request.body.idToken, request.body.questId);
+    response.send(res.data);
+});
+
+app.post("/quest-skip", async (request, response) => {
+    //Lấy token từ body
+    let res = await api.skipWaiting(request.body.idToken);
+    response.send(res.data);
+});
+
 // Start the server
 const server = app.listen(port, (error) => {
     if (error) return console.log(`Error: ${error}`);
