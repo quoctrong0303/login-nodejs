@@ -71,7 +71,7 @@ app.post("/quest-skip", async (request, response) => {
     let res = await api.skipWaiting(request.body.idToken).catch((err) => {
         response.send(err.toJSON());
     });
-    response.send(err);
+    response.send(res.data);
 });
 
 app.post("/quest-active", async (request, response) => {
