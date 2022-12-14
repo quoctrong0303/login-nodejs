@@ -50,36 +50,52 @@ app.post("/login", async (request, response) => {
 
 app.post("/quest-status", async (request, response) => {
     //Lấy token từ body
-    let res = await api.available(request.body.idToken).catch((err) => {
-        response.send(JSON.stringify(err));
-    });
-    response.send(res.data);
+    let res = await api
+        .available(request.body.idToken)
+        //Nếu fetch thành công
+        .then((res) => {
+            response.send(res.data);
+        })
+        //handle lỗi khi fetch
+        .catch((err) => {
+            response.send(JSON.stringify(err));
+        });
 });
 
 app.post("/quest-claim", async (request, response) => {
     //Lấy token, questId từ body
     let res = await api
         .claim(request.body.idToken, request.body.questId)
+        .then((res) => {
+            response.send(res.data);
+        })
         .catch((err) => {
             response.send(JSON.stringify(err));
         });
-    response.send(res.data);
 });
 
 app.post("/quest-skip", async (request, response) => {
     //Lấy token từ body
-    let res = await api.skipWaiting(request.body.idToken).catch((err) => {
-        response.send(JSON.stringify(err));
-    });
-    response.send(res.data);
+    let res = await api
+        .skipWaiting(request.body.idToken)
+        .then((res) => {
+            response.send(res.data);
+        })
+        .catch((err) => {
+            response.send(JSON.stringify(err));
+        });
 });
 
 app.post("/quest-active", async (request, response) => {
     //Lấy token từ body
-    let res = await api.active(request.body.idToken).catch((err) => {
-        response.send(JSON.stringify(err));
-    });
-    response.send(res.data);
+    let res = await api
+        .active(request.body.idToken)
+        .then((res) => {
+            response.send(res.data);
+        })
+        .catch((err) => {
+            response.send(JSON.stringify(err));
+        });
 });
 
 // Start the server
