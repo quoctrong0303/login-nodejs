@@ -53,7 +53,7 @@ module.exports = api = {
     },
     claim: async (token, questId) => {
         let res = await axios.post(
-            `https://api-core.wolvesville.com/clanQuests/clanQuests/claim?questId=${questId}`,
+            `https://api-core.wolvesville.com/clanQuests/claim?questId=${questId}&&claimGoldQuestWithGems=false`,
             {},
             {
                 headers: {

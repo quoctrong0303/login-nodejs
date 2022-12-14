@@ -50,25 +50,35 @@ app.post("/login", async (request, response) => {
 
 app.post("/quest-status", async (request, response) => {
     //Lấy token từ body
-    let res = await api.available(request.body.idToken);
+    let res = await api.available(request.body.idToken).catch((err) => {
+        response.send(err.toJSON());
+    });
     response.send(res.data);
 });
 
 app.post("/quest-claim", async (request, response) => {
     //Lấy token, questId từ body
-    let res = await api.claim(request.body.idToken, request.body.questId);
+    let res = await api
+        .claim(request.body.idToken, request.body.questId)
+        .catch((err) => {
+            response.send(err.toJSON());
+        });
     response.send(res.data);
 });
 
 app.post("/quest-skip", async (request, response) => {
     //Lấy token từ body
-    let res = await api.skipWaiting(request.body.idToken);
-    response.send(res.data);
+    let res = await api.skipWaiting(request.body.idToken).catch((err) => {
+        response.send(err.toJSON());
+    });
+    response.send(err);
 });
 
 app.post("/quest-active", async (request, response) => {
     //Lấy token từ body
-    let res = await api.active(request.body.idToken);
+    let res = await api.active(request.body.idToken).catch((err) => {
+        response.send(err.toJSON());
+    });
     response.send(res.data);
 });
 
