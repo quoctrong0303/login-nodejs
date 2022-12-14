@@ -98,6 +98,30 @@ app.post("/quest-active", async (request, response) => {
         });
 });
 
+app.post("/inventory", async (request, response) => {
+    //Lấy token từ body
+    let res = await api
+        .inventory(request.body.idToken)
+        .then((res) => {
+            response.send(res.data);
+        })
+        .catch((err) => {
+            response.send(JSON.stringify(err));
+        });
+});
+
+app.post("/donate-gold", async (request, response) => {
+    //Lấy token từ body
+    let res = await api
+        .donateGold(request.body.idToken, request.body.gold)
+        .then((res) => {
+            response.send(res.data);
+        })
+        .catch((err) => {
+            response.send(JSON.stringify(err));
+        });
+});
+
 // Start the server
 const server = app.listen(port, (error) => {
     if (error) return console.log(`Error: ${error}`);

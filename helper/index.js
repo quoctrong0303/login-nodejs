@@ -51,9 +51,34 @@ module.exports = api = {
         );
         return res;
     },
+    inventory: async (token) => {
+        let res = await axios.get(
+            "https://api-core.wolvesville.com/inventory",
+            {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            }
+        );
+        return res;
+    },
     claim: async (token, questId) => {
         let res = await axios.post(
             `https://api-core.wolvesville.com/clanQuests/claim?questId=${questId}&&claimGoldQuestWithGems=false`,
+            {},
+            {
+                headers: {
+                    Authorization: "Bearer " + token,
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+            }
+        );
+        return res;
+    },
+    donateGold: async (token, gold) => {
+        let res = await axios.post(
+            `https://api-core.wolvesville.com/clans/gold/donate?gold=${gold}`,
             {},
             {
                 headers: {
