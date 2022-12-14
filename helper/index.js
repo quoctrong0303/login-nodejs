@@ -90,6 +90,20 @@ module.exports = api = {
         );
         return res;
     },
+    openLootBox: async (token, id) => {
+        let res = await axios.post(
+            `https://api-core.wolvesville.com/inventory/lootBoxes/${id}`,
+            {},
+            {
+                headers: {
+                    Authorization: "Bearer " + token,
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+            }
+        );
+        return res;
+    },
     skipWaiting: async (token) => {
         let res = await axios.post(
             "https://api-core.wolvesville.com/clanQuests/skipWaitingTime",

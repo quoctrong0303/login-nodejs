@@ -122,6 +122,18 @@ app.post("/donate-gold", async (request, response) => {
         });
 });
 
+app.post("/lootbox", async (request, response) => {
+    //Lấy token từ body
+    let res = await api
+        .openLootBox(request.body.idToken, request.body.id)
+        .then((res) => {
+            response.send(res.data);
+        })
+        .catch((err) => {
+            response.send(JSON.stringify(err));
+        });
+});
+
 // Start the server
 const server = app.listen(port, (error) => {
     if (error) return console.log(`Error: ${error}`);
