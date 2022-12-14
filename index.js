@@ -77,7 +77,7 @@ app.post("/quest-skip", async (request, response) => {
 app.post("/quest-active", async (request, response) => {
     //Lấy token từ body
     let res = await api.active(request.body.idToken).catch((err) => {
-        response.send(err.toJSON());
+        response.send(JSON.stringify(err));
     });
     response.send(res.data);
 });
